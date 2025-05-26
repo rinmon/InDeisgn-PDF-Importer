@@ -1,7 +1,7 @@
-// PDF取り込み.jsx (MultiPageImporterをベースに改変)
+// PDF取り込み.jsx (MultiPageImporterをベースに改変、日本語化版)
 // CHOTTONNEWS向けにRINMONによりリネームされたスクリプト
 // Version 3.1.0 - 2025-05-26
-// 標準版
+// 完全日本語化バージョン
 //
 // Copyright (C) 2025 RINMON / CHOTTO NEWS
 //
@@ -104,7 +104,10 @@ else
 	readPrefs();
 }
 
-// PDFファイル選択のダイアログ表示用メッセージ
+// 日本語版スクリプト - 翻訳済み
+// 多言語サポートファイルは使用せず、直接日本語テキストを埋め込み
+
+// Ask user to select the PDF/InDesign file to place
 var askIt = "PDF、PDF互換AI、InDesignファイルを選択してください：";
 if (File.fs =="Windows")
 {
@@ -657,14 +660,16 @@ function addPages(docStartPG, startPG, endPG)
 // Create the dialog box
 function makeDialog()
 {
-	var dialog = new Window('dialog', getText("title"));
-	dialog.onClose = ondLogClosed;
+	dLog = new Window('dialog', "PDF取り込みツール");
+	dLog.onClose = ondLogClosed;
 	
 	/******************/
 	/* Upper Left Panel */
 	/******************/
-	dLog.pan1 = dLog.add('panel', [15,15,200,193], "Page Selection");
-	dLog.pan1.add('statictext',  [10,15,170,35], "Import " + placementINFO.kind + " Pages:"); 
+	var upperLeftPanel = dLog.add('panel', undefined, "ページ選択");
+	upperLeftPanel.bounds = [20, 16, 237, 196];
+	dLog.pan1 = upperLeftPanel;
+	dLog.pan1.add('statictext',  [10,15,170,35], "インポートする" + placementINFO.kind + "ページ:"); 
 
 	if(noPDFError)
 	{
@@ -707,33 +712,33 @@ function makeDialog()
 
 
 	// Doc start page
-	dLog.pan1.add('statictext',  [10,94,190,109], "Start Placing on Doc Page:"); 
+	dLog.pan1.add('statictext',  [10,94,190,109], "配置開始ページ:"); 
 	dLog.docStartPG = dLog.pan1.add('edittext', [10,114,70,137], "1");
 	dLog.docStartPG.onChange = docStartPGValidator;
 	
 	/***********************/
 	/* Lower Left Panel */
 	/***********************/
-	dLog.pan2 = dLog.add('panel', [15,200,200,350], "Sizing Options");
+	dLog.pan2 = dLog.add('panel', [15,200,200,350], "サイズオプション");
 
 	// BEGIN Fitting Section
-	dLog.fitPage = dLog.pan2.add('checkbox', [10,15,100,35], "Fit to Page");
+	dLog.fitPage = dLog.pan2.add('checkbox', [10,15,100,35], "ページに合わせる");
 	dLog.fitPage.onClick = onFitPageClicked;
 	dLog.fitPage.value = fitPage;
 
 	// Checkbox
-	dLog.keepProp = dLog.pan2.add('checkbox', [10,35,160,55], "Keep Proportions");
+	dLog.keepProp = dLog.pan2.add('checkbox', [10,35,160,55], "縦横比を維持");
 	dLog.keepProp.value = keepProp;
 	dLog.keepProp.enabled = dLog.fitPage.value;
 	
 	// Checkbox
-	dLog.addBleed = dLog.pan2.add('checkbox', [10,55,160,75], "Bleed the Fit Page");
+	dLog.addBleed = dLog.pan2.add('checkbox', [10,55,160,75], "ブリードを追加");
 	dLog.addBleed.value = addBleed;
 	dLog.addBleed.enabled = dLog.fitPage.value;
 	// END Fitting Section
 
 	// BEGIN Scaling section
-	dLog.pan2.add('statictext',  [10,80,200,95], "Scale of Imported Page:");
+	dLog.pan2.add('statictext',  [10,80,200,95], "インポートするページのスケール:");
 
 	// X%
 	dLog.pan2.add('statictext', [10,105,35,125], "X%:");
@@ -756,20 +761,21 @@ function makeDialog()
 	/*************************/
 	/* Upper Right Panel */
 	/*************************/
-	dLog.pan3 = dLog.add('panel', [210,15,438,193], "Positioning Options");
-	dLog.pan3.add('statictext', [10,15,228,35], "Position on Page Aligned From:");
+	dLog.pan3 = dLog.add('panel', [220,15,422,193], "配置オプション");
+	dLog.pan3.add('statictext', [10,15,228,35], "ページ上での配置位置:");
 
 	// DropDownList
 	dLog.posDropDown =  dLog.pan3.add('dropdownlist', [10,40,215,60], positionValuesAll);
 	dLog.posDropDown.add("separator");
+	dLog.posDropDown.add("item", "上端、綴じ線からの位置");
+	dLog.posDropDown.add("item", "中央、綴じ線からの位置");
+	dLog.posDropDown.add("item", "下端、綴じ線からの位置");
 	dLog.posDropDown.add("item", "Top, relative to spine");
-	dLog.posDropDown.add("item", "Center, relative to spine");
-	dLog.posDropDown.add("item", "Bottom, relative to spine");
 	dLog.posDropDown.selection = positionType;
 
 	// Rotation
-	dLog.pan3.add('statictext', [10,70,85,90], "Rotatation:");
-	dLog.rotate = dLog.pan3.add('dropdownlist', [85,67,215,88]);
+	dLog.pan3.add('statictext', [10,70,60,90], "回転:");
+	dLog.rotate = dLog.pan3.add('dropdownlist', [70,65,215,85]);
 	for(i=0;i<rotateValues.length;i++)
 	{
 		dLog.rotate.add('item', rotateValues[i]);
@@ -777,7 +783,7 @@ function makeDialog()
 	dLog.rotate.selection = rotate;
 	
 	// Offset section
-	dLog.pan3.add('statictext', [10,97,150,117], "Offset by:");
+	dLog.pan3.add('statictext', [10,97,150,117], "オフセット:");
 	// X offset value
 	dLog.pan3.add('statictext', [10,122,25,142], "X:");
 	dLog.offsetX = dLog.pan3.add('edittext', [30,119,95,142], offsetX);
@@ -792,10 +798,10 @@ function makeDialog()
 	/* Lower Right Panel */
 	/*************************/
 	/* old position before removing update option: [210,207,427,380] */
-	dLog.pan4 = dLog.add('panel', [210,200,438,350], "Placement Options");
+	dLog.pan4 = dLog.add('panel', [210,200,438,350], "配置オプション");
 	
 	// Add the crop type dropdown list and populate it
-	dLog.pan4.add('statictext', [10,18,60,35], "Crop to:");
+	dLog.pan4.add('statictext', [10,18,60,35], "クロップ:");
 	dLog.cropType = dLog.pan4.add('dropdownlist', [65,15,215,33]);
 	for(i=0;i<cropStrings.length;i++)
 	{
@@ -804,11 +810,11 @@ function makeDialog()
 	dLog.cropType.selection = (placementINFO.kind == PDF_DOC)? pdfCropType : indCropType;
 
 	// Place on Layer
-	dLog.placeOnLayer = dLog.pan4.add('checkbox', [10,44,220,60], "Place Pages on a New Layer");
+	dLog.placeOnLayer = dLog.pan4.add('checkbox', [10,44,220,60], "新規レイヤーに配置");
 	dLog.placeOnLayer.value = placeOnLayer;
 	
 	// Ignore errors
-	dLog.ignoreErrors = dLog.pan4.add('checkbox', [10,65,220,81], "Ignore Font and Image Errors");
+	dLog.ignoreErrors = dLog.pan4.add('checkbox', [10,65,220,81], "フォントと画像のエラーを無視");
 	dLog.ignoreErrors.value = ignoreErrors;
 	
 	// Update Link Options
@@ -824,7 +830,7 @@ function makeDialog()
 	
 	// Transparent PDFs
 	/* old position before removing update option: [10,133,190,152] */
-	dLog.doTransparent = dLog.pan4.add('checkbox', [10,86,220,100], "Transparent PDF Background");
+	dLog.doTransparent = dLog.pan4.add('checkbox', [10,86,220,100], "PDF背景を透明にする");
 	dLog.doTransparent.value = doTransparent;
 	
 	// Disable PDF options if needed
@@ -833,10 +839,10 @@ function makeDialog()
 		dLog.doTransparent.enabled = false;
 	}
 	
-	// The buttons
-	dLog.OKbut = dLog.add('button', [448,20,507,45], "OK");
+	// ダイアログボタン
+	dLog.OKbut = dLog.add('button', [280,325,340,345], "OK", {name:"ok"});
 	dLog.OKbut.onClick = onOKclicked;
-	dLog.CANbut = dLog.add('button', [448,50,507,75], "Cancel");
+	dLog.CANbut = dLog.add('button', [360,325,420,345], "キャンセル", {name:"cancel"});
 	dLog.CANbut.onClick = onCANclicked;
 	
 	return dLog;
