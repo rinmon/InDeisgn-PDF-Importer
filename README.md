@@ -1,6 +1,6 @@
 # InDesign PDF Importer
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![InDesign](https://img.shields.io/badge/InDesign-CC%202023+-orange.svg)
 
@@ -10,7 +10,7 @@ InDesign用PDFインポートユーティリティ。PDF、PDF互換AIファイ�
 
 * PDF、InDesign、PDF互換AIファイルの複数ページを一度に配置
 * 最新のInDesign (2023/2024)との完全な互換性
-* 日本語インターフェース対応
+* 多言語インターフェース対応（日本語・英語）
 * ページ範囲の選択と配置先ページのマッピング
 * 回転、スケーリング、配置位置の詳細設定
 * 透明背景オプション
@@ -46,6 +46,11 @@ InDesign用PDFインポートユーティリティ。PDF、PDF互換AIファイ�
 * **ページマッピング**: PDF/InDesignページとドキュメントページの詳細なマッピング
 
 ## バージョン履歴
+
+### 1.1.0 (2025-05-26)
+- 多言語サポート機能の追加（日本語・英語）
+- 言語自動検出機能
+- ユーザー設定による言語切り替え
 
 ### 1.0.0 (2025-05-26)
 - 初回リリース
