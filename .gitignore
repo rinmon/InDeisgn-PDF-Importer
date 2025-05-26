@@ -1,0 +1,21 @@
+# macOS関連
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Thumbnails
+._*
+
+# InDesignの一時ファイル
+*.idlk
+
+# バックアップファイル
+*~
+
+# テストデータ
+/test-data/
+
+# ユーザー設定ファイル
+InDesignPDFImporterPrefs.txt
