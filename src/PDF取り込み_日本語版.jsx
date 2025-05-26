@@ -1,7 +1,9 @@
-// PDF取り込み.jsx (MultiPageImporterをベースに改変)
+// PDF取り込み_日本語版.jsx (MultiPageImporterをベースに改変)
 // CHOTTONNEWS向けにRINMONによりリネームされたスクリプト
-// Version 1.1.0 - 2025-05-26
-// 多言語サポート機能追加
+// Version 3.1.0 - 2025-05-26
+// 完全日本語化バージョン
+//
+// Copyright (C) 2025 RINMON / CHOTTO NEWS
 //
 // このスクリプトは、PDF、InDesign、AIファイルの複数ページを
 // InDesignに効率的に配置するためのツールです。

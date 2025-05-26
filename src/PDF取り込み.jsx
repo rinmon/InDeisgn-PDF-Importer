@@ -1,7 +1,9 @@
 // PDF取り込み.jsx (MultiPageImporterをベースに改変)
 // CHOTTONNEWS向けにRINMONによりリネームされたスクリプト
-// Version 1.1.0 - 2025-05-26
-// 多言語サポート機能追加
+// Version 3.1.0 - 2025-05-26
+// 標準版
+//
+// Copyright (C) 2025 RINMON / CHOTTO NEWS
 //
 // このスクリプトは、PDF、InDesign、AIファイルの複数ページを
 // InDesignに効率的に配置するためのツールです。
@@ -102,14 +104,8 @@ else
 	readPrefs();
 }
 
-// 多言語サポートファイルの読み込み（同じディレクトリに配置）
-#include "./i18n.jsx"
-
-// 現在の言語を取得
-var currentLanguage = getCurrentLanguage();
-
-// Ask user to select the PDF/InDesign file to place
-var askIt = getText("selectPDFFile");
+// PDFファイル選択のダイアログ表示用メッセージ
+var askIt = "PDF、PDF互換AI、InDesignファイルを選択してください：";
 if (File.fs =="Windows")
 {
 	var theFile = File.openDialog(askIt, "Placeable: *.indd;*.pdf;*.ai");

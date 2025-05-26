@@ -1,6 +1,6 @@
 # InDesign PDF Importer
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-3.1.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![InDesign](https://img.shields.io/badge/InDesign-CC%202023+-orange.svg)
 
@@ -47,7 +47,7 @@ InDesign用PDFインポートユーティリティ。PDF、PDF互換AIファイ�
 
 ## バージョン履歴
 
-### 1.1.0 (2025-05-26)
+### 3.1.0 (2025-05-26)
 - 日本語専用版スクリプトの追加（`PDF取り込み_日本語版.jsx`）
 - 完全な日本語ユーザーインターフェース
 - 使いやすさを向上した画面表示
@@ -66,7 +66,7 @@ InDesign用PDFインポートユーティリティ。PDF、PDF互換AIファイ�
 
 MIT License
 
-Copyright (c) 2025 CHOTTO NEWS / RINMON
+Copyright (c) 2025 RINMON / CHOTTO NEWS
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
