@@ -21,6 +21,12 @@ InDesign用PDFインポートユーティリティ。PDF、PDF互換AIファイ�
 1. このリポジトリをクローンまたはZIPファイルとしてダウンロード
 2. `src`フォルダ内の`PDF取り込み.jsx`ファイルをInDesignスクリプトフォルダにコピー:
    - **Mac**: `/Users/[ユーザー名]/Library/Preferences/Adobe InDesign/[バージョン]/[言語]/Scripts/Scripts Panel/`
+     - **Macの「ライブラリ」フォルダへのアクセス方法**:
+       1. Finderを開く
+       2. 「移動」メニューをクリックする
+       3. **Control**キー（⌃）を押しながらメニューを表示すると、通常は非表示の「ライブラリ」オプションが表示される
+       4. 「ライブラリ」を選択
+       5. その後、`Preferences` → `Adobe InDesign` → `[バージョン]` → `[言語]` → `Scripts` → `Scripts Panel` フォルダへ進む
    - **Windows**: `C:\Users\[ユーザー名]\AppData\Roaming\Adobe\InDesign\[バージョン]\[言語]\Scripts\Scripts Panel\`
 
 ## 使用方法
