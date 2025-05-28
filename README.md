@@ -27,6 +27,7 @@ InDesign用PDFインポートユーティリティ。PDF、PDF互換AIファイ�
        3. **Control**キー（⌃）を押しながらメニューを表示すると、通常は非表示の「ライブラリ」オプションが表示される
        4. 「ライブラリ」を選択
        5. その後、`Preferences` → `Adobe InDesign` → `[バージョン]` → `[言語]` → `Scripts` → `Scripts Panel` フォルダへ進む
+       6. **注意**: `[言語]`フォルダ（例: `ja_JP`）や`Scripts Panel`フォルダが存在しない場合は、必要に応じて作成してください
    - **Windows**: `C:\Users\[ユーザー名]\AppData\Roaming\Adobe\InDesign\[バージョン]\[言語]\Scripts\Scripts Panel\`
 
 ## 使用方法
